@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { OrdersComponent } from './orders/orders.component';
+
+const routes: Routes = [//Lazy-loading
+  {path : 'orders', component: OrdersComponent,
+    loadChildren: () => import ('./orders/orders.module')
+    .then(e => e.OrdersModule)
+  },];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
